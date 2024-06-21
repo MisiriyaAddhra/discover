@@ -323,16 +323,17 @@ const setCategories = () => {
     .join("");
 
   categoriesContainer.addEventListener("click", (e) => {
-    if (e.target.tagName === "A") {
-      activeCategory = e.target.textContent.trim();
+    if (e.target.tagName === "LI" && e.target.classList.contains("cat")) {
+      const categoryName = e.target.querySelector("a").textContent.trim();
+      activeCategory = categoryName;
       filterProducts(searchInput.value); // Filter products based on the search term
-
+  
       // Add active class to the clicked category
       const categoriesElements = document.querySelectorAll(".cat");
       categoriesElements.forEach(category => {
         category.classList.remove('active');
       });
-      e.target.parentElement.classList.add('active');
+      e.target.classList.add('active');
     }
   });
 
